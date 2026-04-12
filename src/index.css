@@ -6,6 +6,12 @@
     color-scheme: light;
   }
 
+  @import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
   body {
     font-family: "General Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
     background: #f7f4ef;
