@@ -1,17 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // App.tsx - Complete Final Version with Tech-Blue Palette
 import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView, useMotionValue,} from 'framer-motion';
@@ -535,9 +522,9 @@ function HeroSection() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="relative hidden lg:block"
+          className="relative block"
         >
-          <div className="absolute -top-6 -left-6 bg-white/90 backdrop-blur border border-[#e7e1d8] rounded-2xl px-5 py-4 shadow-[0_20px_45px_rgba(13,15,20,0.1)]">
+          <div className="absolute -top-6 -left-4 sm:-left-6 bg-white/90 backdrop-blur border border-[#e7e1d8] rounded-2xl px-5 py-4 shadow-[0_20px_45px_rgba(13,15,20,0.1)] z-20">
             <p className="text-xs uppercase tracking-[0.25em] text-[#8a8175]">Studio Note</p>
             <p className="text-sm text-[#0d0f14] mt-1">Built for ambitious, design-led teams.</p>
           </div>
@@ -1185,5 +1172,4 @@ function App() {
 }
 
 export default App;
-
 
