@@ -17,9 +17,9 @@ import { useState, useRef } from 'react';
 import { motion, AnimatePresence, useInView, useMotionValue,} from 'framer-motion';
 import type { PanInfo } from 'framer-motion';
 import { 
-  ChevronLeft, ChevronRight, ArrowRight, Trophy, Sparkles, Users, 
+  ChevronLeft, ChevronRight, ArrowRight, Sparkles, Users, 
   Rocket, Globe, Calendar, Menu, X, MessageCircle, Target, Zap, 
-  Shield, Phone, Mail
+  Shield, Phone, Mail, Megaphone, GraduationCap, Briefcase, Lightbulb
 } from 'lucide-react';
 
 // ============================================
@@ -74,7 +74,7 @@ interface Challenge {
   id: string;
   title: string;
   description: string;
-  icon: string;
+  icon: React.ReactNode;
   gradient: string;
 }
 
@@ -120,36 +120,36 @@ const challenges: Challenge[] = [
     id: '1',
     title: 'Product Evangelism',
     description: 'Ignite customer excitement and drive product adoption through strategic evangelism programs.',
-    icon: '📢',
-    gradient: 'from-blue-600 to-cyan-500',
+    icon: <Megaphone className="w-6 h-6" />,
+    gradient: 'from-[#3B6EFA] to-[#7AA2FF]',
   },
   {
     id: '2',
     title: 'Startup Pitches',
     description: 'Find the best startups in your industry to partner with and co-develop innovative solutions.',
-    icon: '🚀',
-    gradient: 'from-blue-700 to-indigo-600',
+    icon: <Rocket className="w-6 h-6" />,
+    gradient: 'from-[#0D0F14] to-[#3B6EFA]',
   },
   {
     id: '3',
     title: 'Student Challenges',
     description: 'Explore innovative ideas from student minds across global universities.',
-    icon: '🎓',
-    gradient: 'from-emerald-600 to-teal-500',
+    icon: <GraduationCap className="w-6 h-6" />,
+    gradient: 'from-[#1F6F5B] to-[#4FB99F]',
   },
   {
     id: '4',
     title: 'Recruitment',
     description: 'Connect with students globally to identify the brightest young minds.',
-    icon: '💼',
-    gradient: 'from-amber-600 to-orange-500',
+    icon: <Briefcase className="w-6 h-6" />,
+    gradient: 'from-[#C47F2A] to-[#E0A857]',
   },
   {
     id: '5',
     title: 'Internal Hackathon',
     description: 'Empower your workforce to drive change! Gather employee insights and innovation.',
-    icon: '💡',
-    gradient: 'from-sky-600 to-blue-500',
+    icon: <Lightbulb className="w-6 h-6" />,
+    gradient: 'from-[#7B4DFF] to-[#B49BFF]',
   },
 ];
 
@@ -337,17 +337,17 @@ function Header() {
   ];
   
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200">
+    <header className="sticky top-0 z-50 bg-[#f7f4ef]/90 backdrop-blur border-b border-[#e7e1d8]">
       {/* Top bar */}
-      <div className="hidden lg:block bg-slate-50 border-b border-slate-200">
+      <div className="hidden lg:block bg-[#0d0f14] border-b border-[#1b1f28]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-10">
             <div className="flex items-center gap-6">
-              <a href="tel:+917314980182" className="flex items-center gap-2 text-sm text-slate-600 hover:text-blue-600 transition-colors">
+              <a href="tel:+917314980182" className="flex items-center gap-2 text-sm text-[#cfc7bb] hover:text-[#f6d28b] transition-colors">
                 <Phone className="w-4 h-4" />
                 <span>+91 73149 80182</span>
               </a>
-              <a href="mailto:contact@stevesailab.com" className="flex items-center gap-2 text-sm text-slate-600 hover:text-blue-600 transition-colors">
+              <a href="mailto:contact@stevesailab.com" className="flex items-center gap-2 text-sm text-[#cfc7bb] hover:text-[#f6d28b] transition-colors">
                 <Mail className="w-4 h-4" />
                 <span>contact@stevesailab.com</span>
               </a>
@@ -363,7 +363,7 @@ function Header() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="p-2 text-slate-500 hover:text-blue-600 hover:bg-slate-100 rounded-full transition-all"
+                    className="p-2 text-[#9f978c] hover:text-[#f6d28b] hover:bg-white/10 rounded-full transition-all"
                   >
                     <Icon className="w-4 h-4" />
                   </a>
@@ -378,10 +378,10 @@ function Header() {
       <nav className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <a href="#" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#0d0f14] to-[#3b6efa] flex items-center justify-center">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-slate-900">
+            <span className="text-[0.95rem] font-semibold tracking-[0.35em] text-[#0d0f14] uppercase">
               STEVE'S AI LAB
             </span>
           </a>
@@ -391,7 +391,7 @@ function Header() {
               <a
                 key={item.label}
                 href={item.href}
-                className="text-sm font-medium text-slate-700 hover:text-blue-600 transition-colors"
+                className="text-sm font-medium text-[#3a3430] hover:text-[#3b6efa] transition-colors"
               >
                 {item.label}
               </a>
@@ -399,16 +399,16 @@ function Header() {
           </div>
           
           <div className="hidden lg:block flex-shrink-0">
-            <button className="px-5 py-2.5 bg-blue-600 text-white rounded-full text-sm font-medium hover:bg-blue-700 shadow-sm hover:shadow-md transition-all">
+            <button className="px-5 py-2.5 bg-[#0d0f14] text-[#f7f4ef] rounded-full text-sm font-medium hover:bg-[#1a1d24] shadow-[0_12px_30px_rgba(13,15,20,0.25)] hover:-translate-y-0.5 transition-all">
               Talk To Our Expert
             </button>
           </div>
           
           <div className="flex items-center gap-3 lg:hidden">
-            <a href="tel:+917314980182" className="p-2 text-slate-600 hover:text-blue-600">
+            <a href="tel:+917314980182" className="p-2 text-[#3a3430] hover:text-[#3b6efa]">
               <Phone className="w-5 h-5" />
             </a>
-            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-lg hover:bg-slate-100">
+            <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="p-2 rounded-lg hover:bg-[#efe9df]">
               {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
@@ -421,32 +421,32 @@ function Header() {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden border-t border-slate-200"
+              className="lg:hidden border-t border-[#e7e1d8] bg-[#fdfbf7]"
             >
               <div className="py-4 space-y-3">
                 {navItems.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="block py-2 text-sm font-medium text-slate-700 hover:text-blue-600"
+                    className="block py-2 text-sm font-medium text-[#3a3430] hover:text-[#3b6efa]"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
                   </a>
                 ))}
                 
-                <div className="pt-3 border-t border-slate-200 space-y-2">
-                  <a href="tel:+917314980182" className="flex items-center gap-2 py-2 text-sm text-slate-600">
+                <div className="pt-3 border-t border-[#e7e1d8] space-y-2">
+                  <a href="tel:+917314980182" className="flex items-center gap-2 py-2 text-sm text-[#5b534a]">
                     <Phone className="w-4 h-4" />
                     <span>+91 73149 80182</span>
                   </a>
-                  <a href="mailto:contact@stevesailab.com" className="flex items-center gap-2 py-2 text-sm text-slate-600">
+                  <a href="mailto:contact@stevesailab.com" className="flex items-center gap-2 py-2 text-sm text-[#5b534a]">
                     <Mail className="w-4 h-4" />
                     <span>contact@stevesailab.com</span>
                   </a>
                 </div>
                 
-                <div className="flex items-center gap-2 pt-3 border-t border-slate-200">
+                <div className="flex items-center gap-2 pt-3 border-t border-[#e7e1d8]">
                   {socialLinks.map((social) => {
                     const Icon = social.icon;
                     return (
@@ -455,7 +455,7 @@ function Header() {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="p-2 text-slate-500 hover:text-blue-600 hover:bg-slate-100 rounded-full"
+                        className="p-2 text-[#8a8175] hover:text-[#3b6efa] hover:bg-[#efe9df] rounded-full"
                       >
                         <Icon className="w-5 h-5" />
                       </a>
@@ -463,7 +463,7 @@ function Header() {
                   })}
                 </div>
                 
-                <button className="w-full mt-3 px-5 py-3 bg-blue-600 text-white rounded-full text-sm font-medium hover:bg-blue-700">
+                <button className="w-full mt-3 px-5 py-3 bg-[#0d0f14] text-[#f7f4ef] rounded-full text-sm font-medium hover:bg-[#1a1d24]">
                   Talk To Our Expert
                 </button>
               </div>
@@ -478,74 +478,91 @@ function Header() {
 // Hero Section
 function HeroSection() {
   return (
-    <section className="relative px-6 lg:px-8 py-20 md:py-28 overflow-hidden">
-      <div className="absolute inset-0 z-0">
-        <img src={UNSPLASH_IMAGES.heroBg} alt="AI Technology" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/85 via-slate-800/70 to-blue-900/80" />
+    <section className="relative px-6 lg:px-8 pt-20 pb-24 overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute -top-32 -left-20 h-80 w-80 rounded-full bg-[#3b6efa]/20 blur-3xl" />
+        <div className="absolute -bottom-32 right-0 h-96 w-96 rounded-full bg-[#f6d28b]/30 blur-3xl" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,110,250,0.12),transparent_40%),radial-gradient(circle_at_75%_25%,rgba(13,15,20,0.08),transparent_45%)]" />
       </div>
       
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="text-sm font-medium text-white">7M+ innovators ready</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
-              In innovation,
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">
-                one size does not fit all
-              </span>
-            </h1>
-            
-            <p className="text-xl text-white/80 mb-8 max-w-xl">
-              Innovate effortlessly. Our leading innovation management platform and 
-              a network of 7 million innovators will help you find the perfect 
-              solutions and bring them to market faster.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="group px-8 py-4 bg-white text-slate-900 rounded-full font-medium text-lg hover:shadow-2xl transition-all hover:scale-105 inline-flex items-center justify-center gap-2">
-                Start Innovating
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button className="px-8 py-4 border-2 border-white/30 text-white rounded-full font-medium text-lg hover:border-white/50 hover:bg-white/10 transition-colors">
-                Watch Demo
-              </button>
-            </div>
-          </motion.div>
+      <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-14 items-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#0d0f14] text-[#f7f4ef] text-xs uppercase tracking-[0.3em] mb-8">
+            Innovation Studio
+          </div>
           
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative hidden lg:block"
-          >
-            <div className="relative h-[400px] w-full rounded-2xl overflow-hidden shadow-2xl border border-white/20">
-              <img src={UNSPLASH_IMAGES.heroFeature} alt="AI Neural Network" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
-              <div className="absolute bottom-6 left-6 right-6">
-                <div className="flex items-center gap-3 text-white">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
-                    <Sparkles className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="font-semibold">Steve's AI Lab</p>
-                    <p className="text-sm text-white/70">Customize pre-trained LLMs for faster, top-notch results.</p>
-                  </div>
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl leading-[0.95] text-[#0d0f14] mb-6">
+            Design the future of
+            <span className="block text-[#3b6efa]">industry-scale AI</span>
+          </h1>
+          
+          <p className="text-lg md:text-xl text-[#4b4440] mb-8 max-w-xl">
+            Steve's AI Lab helps visionary teams build products, platforms, and innovation programs with a precision
+            mindset, a global talent network, and a delivery system built for momentum.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-4">
+            <button className="group px-7 py-3.5 bg-[#0d0f14] text-[#f7f4ef] rounded-full font-medium text-base shadow-[0_18px_40px_rgba(13,15,20,0.25)] hover:-translate-y-0.5 transition-all inline-flex items-center justify-center gap-2">
+              Start Your Journey
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </button>
+            <button className="px-7 py-3.5 border border-[#0d0f14]/20 text-[#0d0f14] rounded-full font-medium text-base hover:bg-[#efe9df] transition-colors">
+              View Our Work
+            </button>
+          </div>
+          
+          <div className="mt-10 grid grid-cols-3 gap-6 max-w-md">
+            <div>
+              <div className="text-2xl font-semibold text-[#0d0f14]">7M+</div>
+              <div className="text-xs uppercase tracking-[0.2em] text-[#8a8175]">Innovators</div>
+            </div>
+            <div>
+              <div className="text-2xl font-semibold text-[#0d0f14]">200+</div>
+              <div className="text-xs uppercase tracking-[0.2em] text-[#8a8175]">Partners</div>
+            </div>
+            <div>
+              <div className="text-2xl font-semibold text-[#0d0f14]">10x</div>
+              <div className="text-xs uppercase tracking-[0.2em] text-[#8a8175]">Speed</div>
+            </div>
+          </div>
+        </motion.div>
+        
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative hidden lg:block"
+        >
+          <div className="absolute -top-6 -left-6 bg-white/90 backdrop-blur border border-[#e7e1d8] rounded-2xl px-5 py-4 shadow-[0_20px_45px_rgba(13,15,20,0.1)]">
+            <p className="text-xs uppercase tracking-[0.25em] text-[#8a8175]">Studio Note</p>
+            <p className="text-sm text-[#0d0f14] mt-1">Built for ambitious, design-led teams.</p>
+          </div>
+          
+          <div className="relative h-[430px] w-full rounded-[28px] overflow-hidden shadow-[0_30px_80px_rgba(13,15,20,0.25)] border border-[#e7e1d8]">
+            <img src={UNSPLASH_IMAGES.heroFeature} alt="AI Neural Network" className="w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0f14]/80 via-transparent to-transparent" />
+            <div className="absolute bottom-6 left-6 right-6">
+              <div className="flex items-center gap-3 text-white">
+                <div className="w-11 h-11 rounded-full bg-[#f6d28b] text-[#0d0f14] flex items-center justify-center">
+                  <Sparkles className="w-5 h-5" />
+                </div>
+                <div>
+                  <p className="text-sm uppercase tracking-[0.2em] text-white/80">Signal</p>
+                  <p className="font-medium">Custom AI systems that scale with you.</p>
                 </div>
               </div>
             </div>
-          </motion.div>
-        </div>
+          </div>
+          
+          <div className="absolute -bottom-8 right-4 bg-[#0d0f14] text-[#f7f4ef] rounded-2xl px-5 py-4 shadow-[0_25px_60px_rgba(13,15,20,0.25)]">
+            <p className="text-xs uppercase tracking-[0.25em] text-[#f6d28b]">Launch Cadence</p>
+            <p className="text-sm mt-1">Prototype to deployment in weeks, not quarters.</p>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -554,17 +571,24 @@ function HeroSection() {
 // Partner Logos
 function PartnerLogos() {
   return (
-    <section className="py-12 px-6 lg:px-8 border-y border-slate-200 bg-white">
+    <section className="py-12 px-6 lg:px-8 border-y border-[#e7e1d8] bg-[#fdfbf7]">
       <div className="max-w-7xl mx-auto">
-        <p className="text-center text-xs font-semibold tracking-wider text-slate-500 mb-8 uppercase">
-          POWERED BY CREATIVE COMPARISON, STANDARDS
+        <p className="text-center text-xs font-semibold tracking-[0.3em] text-[#8a8175] mb-8 uppercase">
+          Trusted By Teams Scaling Innovation
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-14">
-          {partners.map((partner) => (
-            <div key={partner} className="text-2xl font-bold text-slate-400 hover:text-slate-600 transition-colors">
-              {partner}
-            </div>
-          ))}
+        <div className="relative overflow-hidden">
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-16 bg-gradient-to-r from-[#fdfbf7] to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-16 bg-gradient-to-l from-[#fdfbf7] to-transparent" />
+          <div className="marquee-track">
+            {[...partners, ...partners].map((partner, index) => (
+              <div
+                key={`${partner}-${index}`}
+                className="marquee-item text-2xl font-semibold text-[#b3aba0] hover:text-[#3b6efa] transition-colors"
+              >
+                {partner}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -584,24 +608,24 @@ function InnovationCarousel() {
   };
   
   return (
-    <section id="challenges" className="py-24 px-6 lg:px-8 bg-slate-50">
+    <section id="challenges" className="py-24 px-6 lg:px-8 bg-[#f7f4ef]">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-end justify-between mb-12">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="font-display text-4xl md:text-5xl text-[#0d0f14] mb-4">
               Innovation Challenges
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl">
+            <p className="text-lg text-[#5b534a] max-w-2xl">
               Run corporate challenges & hackathons to develop innovative solutions 
               that will transform your business.
             </p>
           </div>
           
           <div className="hidden md:flex gap-2">
-            <button onClick={prev} disabled={currentIndex === 0} className="p-3 rounded-full bg-white shadow-md hover:shadow-lg disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+            <button onClick={prev} disabled={currentIndex === 0} className="p-3 rounded-full bg-[#fdfbf7] border border-[#e7e1d8] shadow-[0_12px_30px_rgba(13,15,20,0.08)] hover:-translate-y-0.5 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <button onClick={next} disabled={currentIndex >= challenges.length - 3} className="p-3 rounded-full bg-white shadow-md hover:shadow-lg disabled:opacity-30 disabled:cursor-not-allowed transition-all">
+            <button onClick={next} disabled={currentIndex >= challenges.length - 3} className="p-3 rounded-full bg-[#fdfbf7] border border-[#e7e1d8] shadow-[0_12px_30px_rgba(13,15,20,0.08)] hover:-translate-y-0.5 disabled:opacity-30 disabled:cursor-not-allowed transition-all">
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
@@ -620,12 +644,14 @@ function InnovationCarousel() {
           >
             {challenges.map((challenge) => (
               <div key={challenge.id} className="flex-shrink-0 mr-6" style={{ width: CARD_WIDTH }}>
-                <motion.div whileHover={{ y: -8 }} className="group relative p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover:shadow-xl transition-all h-full">
+                <motion.div whileHover={{ y: -8 }} className="group relative p-6 rounded-3xl bg-[#fdfbf7] border border-[#e7e1d8] shadow-[0_16px_35px_rgba(13,15,20,0.08)] hover:shadow-[0_25px_60px_rgba(13,15,20,0.12)] transition-all h-full">
                   <div className={`absolute top-0 left-0 right-0 h-1.5 rounded-t-2xl bg-gradient-to-r ${challenge.gradient}`} />
-                  <div className="text-4xl mb-4">{challenge.icon}</div>
-                  <h3 className="text-xl font-semibold text-slate-900 mb-3">{challenge.title}</h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">{challenge.description}</p>
-                  <div className="mt-4 flex items-center text-sm font-medium text-blue-600 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-12 h-12 rounded-2xl bg-[#0d0f14] text-[#f7f4ef] flex items-center justify-center mb-4">
+                    {challenge.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-[#0d0f14] mb-3">{challenge.title}</h3>
+                  <p className="text-[#5b534a] text-sm leading-relaxed">{challenge.description}</p>
+                  <div className="mt-4 flex items-center text-sm font-medium text-[#3b6efa] opacity-0 group-hover:opacity-100 transition-opacity">
                     Learn more <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </motion.div>
@@ -644,7 +670,7 @@ function AboutSection() {
   const isInView = useInView(ref, { once: true });
   
   return (
-    <section id="about" ref={ref} className="py-24 px-6 lg:px-8 bg-white">
+    <section id="about" ref={ref} className="py-24 px-6 lg:px-8 bg-[#fdfbf7]">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <motion.div
@@ -652,10 +678,10 @@ function AboutSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mb-6">
+            <h2 className="font-display text-4xl md:text-5xl text-[#0d0f14] mb-6">
               Business with Steve's AI Lab.
             </h2>
-            <div className="space-y-4 text-slate-600">
+            <div className="space-y-4 text-[#5b534a]">
               <p>
                 At Steve's AI Lab, we're on a mission to revolutionize industries through data-centric AI. 
                 Our team is driven by the belief that everyone should have the power to solve their most 
@@ -676,18 +702,18 @@ function AboutSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative h-[400px] rounded-2xl overflow-hidden shadow-xl">
+            <div className="relative h-[420px] rounded-[28px] overflow-hidden shadow-[0_24px_60px_rgba(13,15,20,0.15)] border border-[#e7e1d8]">
               <img src={UNSPLASH_IMAGES.aboutLab} alt="AI Lab Workspace" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0d0f14]/85 via-[#0d0f14]/30 to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8">
-                <h3 className="text-2xl font-bold text-white mb-4">
+                <h3 className="font-display text-2xl text-white mb-4">
                   Our Mission Is To Accelerate The Development Of AI
                 </h3>
                 <div className="grid grid-cols-3 gap-6">
                   {missionStats.map((stat, i) => (
                     <div key={i}>
-                      <div className="text-3xl md:text-4xl font-bold text-white">{stat.value}</div>
-                      <div className="text-sm text-white/70 mt-1">{stat.label}</div>
+                      <div className="text-3xl md:text-4xl font-semibold text-white">{stat.value}</div>
+                      <div className="text-xs uppercase tracking-[0.2em] text-white/70 mt-1">{stat.label}</div>
                     </div>
                   ))}
                 </div>
@@ -706,17 +732,17 @@ function CoreValuesSection() {
   const isInView = useInView(ref, { once: true });
   
   return (
-    <section ref={ref} className="py-24 px-6 lg:px-8 bg-slate-50">
+    <section ref={ref} className="py-24 px-6 lg:px-8 bg-[#0d0f14]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-14"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <h2 className="font-display text-4xl md:text-5xl text-white mb-4">
             Our Core Values
           </h2>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+          <p className="text-lg text-white/70 max-w-3xl mx-auto">
             We build solutions that focus on user needs and perform well on search engines/browsers. 
             Iterative approaches and agile methods allow us to ensure faster time-to-market.
           </p>
@@ -729,13 +755,13 @@ function CoreValuesSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.1 }}
-              className="p-8 rounded-2xl bg-white border border-slate-200 text-center hover:border-blue-300 transition-all"
+              className="p-8 rounded-3xl bg-[#141821] border border-[#232936] text-center hover:border-[#3b6efa] transition-all"
             >
-              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white flex items-center justify-center mx-auto mb-6">
+              <div className="w-16 h-16 rounded-2xl bg-[#f6d28b] text-[#0d0f14] flex items-center justify-center mx-auto mb-6">
                 {value.icon}
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">{value.title}</h3>
-              <p className="text-slate-600">{value.description}</p>
+              <h3 className="text-xl font-semibold text-white mb-3">{value.title}</h3>
+              <p className="text-white/70">{value.description}</p>
             </motion.div>
           ))}
         </div>
@@ -750,7 +776,7 @@ function StatsSection() {
   const isInView = useInView(ref, { once: true });
   
   return (
-    <section ref={ref} className="relative py-24 px-6 lg:px-8 bg-white overflow-hidden">
+    <section ref={ref} className="relative py-24 px-6 lg:px-8 bg-[#fdfbf7] overflow-hidden">
       <div className="absolute inset-0 opacity-5">
         <img src={UNSPLASH_IMAGES.statsPattern} alt="" className="w-full h-full object-cover" />
       </div>
@@ -761,11 +787,11 @@ function StatsSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <h2 className="font-display text-4xl md:text-5xl text-[#0d0f14] mb-4">
             We deliver results,
-            <span className="block text-blue-600">not presentations</span>
+            <span className="block text-[#3b6efa]">not presentations</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <p className="text-xl text-[#5b534a] max-w-3xl mx-auto">
             Our customizable platform empowers you with the flexibility to achieve 
             your unique innovation objectives.
           </p>
@@ -778,11 +804,11 @@ function StatsSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.1 }}
-              className="group p-8 rounded-2xl bg-slate-50 border border-slate-200 hover:shadow-md transition-all"
+              className="group p-8 rounded-3xl bg-white border border-[#e7e1d8] shadow-[0_12px_30px_rgba(13,15,20,0.06)] hover:-translate-y-1 transition-all"
             >
-              <div className="text-5xl font-bold text-blue-600 mb-4">{stat.value}</div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">{stat.label}</h3>
-              <p className="text-slate-600 text-sm">{stat.description}</p>
+              <div className="text-5xl font-semibold text-[#0d0f14] mb-4">{stat.value}</div>
+              <h3 className="text-lg font-semibold text-[#0d0f14] mb-2">{stat.label}</h3>
+              <p className="text-[#5b534a] text-sm">{stat.description}</p>
             </motion.div>
           ))}
         </div>
@@ -793,9 +819,9 @@ function StatsSection() {
           transition={{ delay: 0.5 }}
           className="mt-12 text-center"
         >
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-[#8a8175]">
             79% of companies ranked innovation in their top 3 priorities, have you?
-            <span className="block mt-1">— by BCG (Boston Consulting Group)</span>
+            <span className="block mt-1">- by BCG (Boston Consulting Group)</span>
           </p>
         </motion.div>
       </div>
@@ -809,17 +835,17 @@ function EngagementSection() {
   const isInView = useInView(ref, { once: true });
   
   return (
-    <section ref={ref} className="py-24 px-6 lg:px-8 bg-slate-50">
+    <section ref={ref} className="py-24 px-6 lg:px-8 bg-[#f7f4ef]">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-14"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <h2 className="font-display text-4xl md:text-5xl text-[#0d0f14] mb-4">
             Flexible Engagement, Tailored To Your Vision
           </h2>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+          <p className="text-lg text-[#5b534a] max-w-3xl mx-auto">
             Every venture is unique, and so should be the roadmap to its success.
           </p>
         </motion.div>
@@ -831,14 +857,14 @@ function EngagementSection() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: index * 0.1 }}
-              className="group p-8 rounded-2xl bg-white border border-slate-200 hover:shadow-xl transition-all"
+              className="group p-8 rounded-3xl bg-[#fdfbf7] border border-[#e7e1d8] shadow-[0_16px_35px_rgba(13,15,20,0.08)] hover:-translate-y-1 transition-all"
             >
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-14 h-14 rounded-xl bg-[#0d0f14] text-[#f7f4ef] flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 {model.icon}
               </div>
-              <h3 className="text-xl font-semibold text-slate-900 mb-3">{model.title}</h3>
-              <p className="text-slate-600 mb-4">{model.description}</p>
-              <div className="flex items-center text-sm font-medium text-blue-600">
+              <h3 className="text-xl font-semibold text-[#0d0f14] mb-3">{model.title}</h3>
+              <p className="text-[#5b534a] mb-4">{model.description}</p>
+              <div className="flex items-center text-sm font-medium text-[#3b6efa]">
                 Learn more <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
               </div>
             </motion.div>
@@ -854,12 +880,12 @@ function TestimonialsSection() {
   const { currentIndex, next, prev } = useCarousel(testimonials.length - 1);
   
   return (
-    <section className="py-24 px-6 lg:px-8 bg-white">
+    <section className="py-24 px-6 lg:px-8 bg-[#fdfbf7]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-14">
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <h2 className="font-display text-4xl md:text-5xl text-[#0d0f14] mb-4">
             Don't just take our word for it,
-            <span className="block text-blue-600">take theirs</span>
+            <span className="block text-[#3b6efa]">take theirs</span>
           </h2>
         </div>
         
@@ -872,8 +898,8 @@ function TestimonialsSection() {
             >
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
-                  <div className="max-w-3xl mx-auto bg-slate-50 rounded-3xl p-8 md:p-12 border border-slate-200">
-                    <p className="text-lg md:text-xl text-slate-700 italic mb-8">
+                  <div className="max-w-3xl mx-auto bg-white rounded-3xl p-8 md:p-12 border border-[#e7e1d8] shadow-[0_18px_40px_rgba(13,15,20,0.08)]">
+                    <p className="text-lg md:text-xl text-[#3a3430] italic mb-8">
                       "{testimonial.content}"
                     </p>
                     <div className="flex items-center gap-4">
@@ -881,8 +907,8 @@ function TestimonialsSection() {
                         <img src={testimonial.avatarUrl} alt={testimonial.name} className="w-full h-full object-cover" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-slate-900">{testimonial.name}</h4>
-                        <p className="text-sm text-slate-600">{testimonial.role}, {testimonial.company}</p>
+                        <h4 className="font-semibold text-[#0d0f14]">{testimonial.name}</h4>
+                        <p className="text-sm text-[#5b534a]">{testimonial.role}, {testimonial.company}</p>
                       </div>
                     </div>
                   </div>
@@ -891,10 +917,10 @@ function TestimonialsSection() {
             </motion.div>
           </div>
           
-          <button onClick={prev} className="absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white shadow-lg border border-slate-200 hover:shadow-xl transition-all">
+          <button onClick={prev} className="absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#fdfbf7] border border-[#e7e1d8] shadow-[0_12px_30px_rgba(13,15,20,0.08)] hover:-translate-y-0.5 transition-all">
             <ChevronLeft className="w-5 h-5" />
           </button>
-          <button onClick={next} className="absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white shadow-lg border border-slate-200 hover:shadow-xl transition-all">
+          <button onClick={next} className="absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full bg-[#fdfbf7] border border-[#e7e1d8] shadow-[0_12px_30px_rgba(13,15,20,0.08)] hover:-translate-y-0.5 transition-all">
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
@@ -906,18 +932,18 @@ function TestimonialsSection() {
 // Events Grid
 function EventsGrid() {
   return (
-    <section id="events" className="py-24 px-6 lg:px-8 bg-slate-50">
+    <section id="events" className="py-24 px-6 lg:px-8 bg-[#f7f4ef]">
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-between mb-12">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h2 className="font-display text-4xl md:text-5xl text-[#0d0f14] mb-4">
               Flagship Innovation Challenges
             </h2>
-            <p className="text-lg text-slate-600">
+            <p className="text-lg text-[#5b534a]">
               Join our upcoming events and be part of the innovation ecosystem
             </p>
           </div>
-          <button className="hidden md:flex items-center gap-2 text-blue-600 font-medium hover:gap-3 transition-all">
+          <button className="hidden md:flex items-center gap-2 text-[#3b6efa] font-medium hover:gap-3 transition-all">
             View all events <ArrowRight className="w-4 h-4" />
           </button>
         </div>
@@ -927,22 +953,22 @@ function EventsGrid() {
             <motion.div
               key={event.id}
               whileHover={{ y: -6 }}
-              className="group relative bg-white rounded-xl border border-slate-200 overflow-hidden hover:shadow-xl transition-all"
+              className="group relative bg-[#fdfbf7] rounded-2xl border border-[#e7e1d8] overflow-hidden shadow-[0_14px_35px_rgba(13,15,20,0.08)] hover:-translate-y-1 transition-all"
             >
               <div className="relative aspect-video">
                 <img src={event.imageUrl} alt={event.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0d0f14]/60 via-transparent to-transparent" />
               </div>
               
               <div className="p-5">
                 <div className="flex gap-2 mb-3">
-                  <span className="px-2 py-1 text-xs font-medium bg-emerald-100 text-emerald-700 rounded-full">{event.type}</span>
-                  <span className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-700 rounded-full">{event.format}</span>
+                  <span className="px-2 py-1 text-xs font-medium bg-[#e7f5ef] text-[#1f6f5b] rounded-full">{event.type}</span>
+                  <span className="px-2 py-1 text-xs font-medium bg-[#e8efff] text-[#3b6efa] rounded-full">{event.format}</span>
                 </div>
                 
-                <h3 className="font-semibold text-slate-900 mb-2">{event.title}</h3>
+                <h3 className="font-semibold text-[#0d0f14] mb-2">{event.title}</h3>
                 
-                <div className="flex items-center gap-2 text-sm text-slate-500 mb-4">
+                <div className="flex items-center gap-2 text-sm text-[#8a8175] mb-4">
                   <Calendar className="w-4 h-4" />
                   <span>{event.date}</span>
                 </div>
@@ -951,8 +977,8 @@ function EventsGrid() {
                   disabled={event.status === 'closed'}
                   className={`w-full py-2.5 rounded-lg font-medium transition-all ${
                     event.status === 'open'
-                      ? 'bg-blue-600 text-white hover:bg-blue-700'
-                      : 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                      ? 'bg-[#0d0f14] text-[#f7f4ef] hover:bg-[#1a1d24]'
+                      : 'bg-[#efe9df] text-[#8a8175] cursor-not-allowed'
                   }`}
                 >
                   {event.status === 'open' ? 'Register Now' : 'Registration Closed'}
@@ -969,10 +995,10 @@ function EventsGrid() {
 // CTA Section
 function CTASection() {
   return (
-    <section className="relative py-24 px-6 lg:px-8">
+    <section className="relative py-28 px-6 lg:px-8">
       <div className="absolute inset-0">
         <img src={UNSPLASH_IMAGES.ctaBg} alt="Technology" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-blue-900/80 to-slate-900/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0d0f14]/95 via-[#111827]/85 to-[#0d0f14]/95" />
       </div>
       
       <div className="relative max-w-4xl mx-auto text-center">
@@ -981,17 +1007,17 @@ function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
+          <h2 className="font-display text-3xl md:text-5xl text-white mb-4">
             Ready to transform your innovation journey?
           </h2>
-          <p className="text-lg text-white/80 mb-10 max-w-2xl mx-auto">
+          <p className="text-lg text-white/70 mb-10 max-w-2xl mx-auto">
             Join thousands of companies already innovating with Steve's AI Lab.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-white text-slate-900 rounded-full font-medium text-lg hover:shadow-2xl transition-all hover:scale-105">
+            <button className="px-8 py-4 bg-[#f6d28b] text-[#0d0f14] rounded-full font-medium text-lg hover:shadow-2xl transition-all hover:-translate-y-0.5">
               Book your Demo
             </button>
-            <button className="px-8 py-4 border-2 border-white/40 text-white rounded-full font-medium text-lg hover:border-white/70 hover:bg-white/10 transition-all">
+            <button className="px-8 py-4 border border-white/40 text-white rounded-full font-medium text-lg hover:border-white/70 hover:bg-white/10 transition-all">
               Contact Sales
             </button>
           </div>
@@ -1138,7 +1164,7 @@ function ChatWidget() {
 // ============================================
 function App() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#f7f4ef] text-[#0d0f14] selection:bg-[#0d0f14] selection:text-[#f7f4ef]">
       <Header />
       <main>
         <HeroSection />
@@ -1159,3 +1185,5 @@ function App() {
 }
 
 export default App;
+
+
